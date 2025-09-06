@@ -3,7 +3,8 @@
     "allow": [
       "Bash(curl:*)",
       "Bash(pnpm dev:*)",
-      "Bash(pnpm next dev:*)"
+      "Bash(pnpm next dev:*)",
+      "Bash(http GET:*)"
     ],
     "deny": [],
     "ask": []

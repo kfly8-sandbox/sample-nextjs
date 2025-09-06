@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
-import SlideViewer from './SlideViewer'
-import { getSlide } from './slide-server-action'
 import SlideServerComponent from './SlideServerComponent'
+import SlideNavigation from './SlideNavigation'
+import { getSlide } from './slide-server-action'
 
 export default async function SlidesPage({
   searchParams,
@@ -11,8 +11,8 @@ export default async function SlidesPage({
   const params = await searchParams
   const slideNumber = Number(params.slide) || 1
 
-  // Get initial data for SSR
-  const initialData = await getSlide(slideNumber)
+  // Get slide data
+  const data = await getSlide(slideNumber)
 
   return (
     <div className="container mx-auto p-4">
@@ -27,13 +27,14 @@ export default async function SlidesPage({
           </div>
         }
       >
-        {/* Initial Server-Side Render */}
-        <div className="hidden">
-          <SlideServerComponent data={initialData} />
-        </div>
+        {/* Server Component renders the slide */}
+        <SlideServerComponent data={data} />
 
-        {/* Client Component with RSC Payload Loading */}
-        <SlideViewer initialSlide={slideNumber} />
+        {/* Simple navigation with Link */}
+        <SlideNavigation
+          currentSlide={data.currentSlide}
+          totalSlides={data.totalSlides}
+        />
       </Suspense>
     </div>
   )
