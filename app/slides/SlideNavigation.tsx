@@ -13,7 +13,7 @@ export default function SlideNavigation({ currentSlide, totalSlides }: SlideNavi
     <div className="flex justify-between items-center mt-6">
       {currentSlide > 1 ? (
         <Link
-          href={`/slides?slide=${prevSlide}`}
+          href={`/slides/${prevSlide}`}
           className="px-6 py-3 bg-blue-500 text-white rounded-lg transition-colors hover:bg-blue-600"
         >
           ← Previous
@@ -26,7 +26,7 @@ export default function SlideNavigation({ currentSlide, totalSlides }: SlideNavi
 
       {currentSlide < totalSlides ? (
         <Link
-          href={`/slides?slide=${nextSlide}`}
+          href={`/slides/${nextSlide}`}
           className="px-6 py-3 bg-blue-500 text-white rounded-lg transition-colors hover:bg-blue-600"
         >
           Next →
